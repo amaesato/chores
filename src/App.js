@@ -1,25 +1,30 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
+import { Switch, Route, Link } from 'react-router-dom';
+
+import { Typography } from '@rmwc/typography';
+import { Fab } from '@rmwc/fab';
+
+import Dashboard from './components/Dashboard';
+import AddChore from './components/AddChore';
+
 import './App.css';
 
 class App extends Component {
   render() {
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
+      <div className="app">
+        <header className="app-header">
+          <Typography use="headline3">Chores</Typography>
         </header>
+        <div className="body">
+          <Switch>
+            <Route exact path="/" component={Dashboard} />
+            <Route path="/add" component={AddChore} />
+          </Switch>
+        </div>
+        <Link to="/add" className="app-add-icon">
+          <Fab icon="add" />
+        </Link>
       </div>
     );
   }
